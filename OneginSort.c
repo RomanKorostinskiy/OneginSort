@@ -27,9 +27,9 @@ struct Text
 
 void MakeTextInfo (struct Text *text);
 
-void ReadFile (char *buffer, const char *file_name, size_t size_of_file);
+void ReadFile (struct Text *text);
 
-void MakeString (char *array, struct Strings* strings);
+void MakeString (struct Text *text);
 
 void DeleteSpaces (char *array);
 
@@ -41,46 +41,47 @@ int main()
 	struct Text hamlet;
 	MakeTextInfo (&hamlet);
 
-	char *buffer = (char*) calloc(SIZE_OF_FILE, sizeof(char));
+	ReadFile(&hamlet); //добавиь возможность вводить название файла с клавиатуры
 
-	ReadFile(buffer, hamlet.file_name ,SIZE_OF_FILE); //добавиь возможность вводить название файла с клавиатуры
+	MakeString(&hamlet);
 
-	struct Strings *file_Strings = (struct Strings*) calloc(SIZE_OF_FILE, sizeof(struct Strings));
-
-	MakeString(buffer, file_Strings);
-
-	free(buffer);
+	free(hamlet.buffer);
+	free(hamlet.file_strings);
 }
 
 void MakeTextInfo (struct Text *text) //сделать скан всех полей text
 {
 	text->file_name = "hamlet.txt";
+
 	text->size_of_file = 200000;
+
 	text->buffer = (char*) calloc(text->size_of_file, sizeof(char));
+
+	text->file_strings = (struct Strings*) calloc(SIZE_OF_FILE, sizeof(struct Strings));
 }
 
-void ReadFile (char *buffer, const char *file_name, size_t size_of_file) //добавить информацию об открытии файла
+void ReadFile (struct Text *text) //добавить информацию об открытии файла
 {
 	FILE *fp;
 
-	fp = fopen(file_name, "r");
+	fp = fopen(text->file_name, "r");
 
-	fread(buffer, sizeof(char), size_of_file, fp);
-	buffer[size_of_file + 1] = EOF;
+	fread(text->buffer, sizeof(char), text->size_of_file, fp);
+	text->buffer[text->size_of_file + 1] = EOF;
 
 	fclose(fp);	
 }
 
-void MakeString (char *array, struct Strings* Strings)
+void MakeString (struct Text *text)
 {
 
-	DeleteSpaces(array);
+	DeleteSpaces(text->buffer);
 
 	size_t newline_pos;
 
 /////////////////////////
-	for (int i = 0; array[i] != EOF; i++)
-		printf("%c", array[i]);
+	for (int i = 0; text->buffer[i] != EOF; i++)
+		printf("%c", text->buffer[i]);
 /////////////////////////
 
 }
