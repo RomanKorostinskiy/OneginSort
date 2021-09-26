@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include <stdio.h> //TODO разделить программу на отдельные файлы
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
@@ -12,16 +12,26 @@ struct String
 
 struct Text
 {
-	const char *file_name;
-	size_t size_of_file;
+	char *input_file_name;
+	size_t size_of_input_file;
 	char *buffer;
 	size_t num_of_strings;
 	struct String *strings;
 };
 
-void ReadFile (struct Text *text);
+void Greetings ();
 
-void WriteFile (struct Text *text);
+void Goodbye ();
+
+void ReadFromFile (struct Text *text);
+
+size_t GetSizeOfFile (FILE* fp);
+
+void WriteToFile (struct Text *text, FILE *fp);
+
+FILE* OpenFileWrite ();
+
+void CloseFile (FILE *fp);
 
 void MakeString (struct Text *text);
 
@@ -39,63 +49,108 @@ int OriginalCMP (const void *arg1, const void *arg2);
 
 void OriginalSort (struct Text *text);
 
-void TestPrint (struct Text *text);
+void MemoryFree (struct Text *text);
 
 int main()
 {
-	struct Text hamlet;
+	struct Text input_text;
 
-	ReadFile(&hamlet);
+	Greetings ();
 
-	MakeString(&hamlet);
+	ReadFromFile(&input_text);
 
-	AlphabetOrderSort(&hamlet);
+	MakeString(&input_text);
 
-	RhymeSort(&hamlet);
+	FILE *output_file = OpenFileWrite();
 
-	WriteFile(&hamlet);
+	AlphabetOrderSort(&input_text);
+	WriteToFile(&input_text, output_file);
 
-	OriginalSort(&hamlet);
+	RhymeSort(&input_text);
+	WriteToFile(&input_text, output_file);
 
-	//TestPrint(&hamlet);
+	OriginalSort(&input_text);
+	WriteToFile(&input_text, output_file);
 
-	//WriteFile(&hamlet);
+	CloseFile(output_file);
 
-	free(hamlet.buffer);
-	free(hamlet.strings);
+	MemoryFree(&input_text); //TODO убивать структуру
+
+	Goodbye(); //TODO сделать проверки на ошибки
 
 	return 0;
 }
 
-void ReadFile (struct Text *text)
+void Greetings ()
 {
-	text->file_name = "hamlet.txt";
+	printf("Hello. This program can sort strings of text.\n\n");
+}
 
-	text->size_of_file = 200000;
+void Goodbye ()
+{
+	printf("Your text is sorted.\n\n");
+}
 
-	text->buffer = (char*) calloc(text->size_of_file, sizeof(char));
+void ReadFromFile (struct Text *text)
+{
+	printf("Enter name of input file: "); //TODO починить ввод файла с клавиатуры
+	scanf("%s", text->input_file_name);
 
 	FILE *fp = NULL;
 
-	fp = fopen(text->file_name, "r");
+	fp = fopen(text->input_file_name, "r");
 
-	int sz = fread(text->buffer, sizeof(char), text->size_of_file, fp);
+	text->size_of_input_file = GetSizeOfFile(fp); //TODO автоматически определять размер файла
+
+	text->buffer = (char*) calloc(text->size_of_input_file, sizeof(char));
+
+	int sz = fread(text->buffer, sizeof(char), text->size_of_input_file, fp);
 	text->buffer[sz] = EOF;
 
 	fclose(fp);
 }
 
-void WriteFile (struct Text *text)
+size_t GetSizeOfFile (FILE* fp)
 {
-	text->file_name = "hamlet.txt";
+	fseek(fp, 0, SEEK_END); //переводим указатель на конец файла
+	int size_of_file = ftell(fp); //считаем количество байт на которое указатель отстоит от начала файла
+	rewind(fp); //возвращает указатель на начало файла
 
-	FILE *fp = NULL;
+	return size_of_file + 1;
+}
 
-	fp = fopen(text->file_name, "w");
+void WriteToFile (struct Text *text, FILE *fp)
+{
+	assert(fp != NULL);
 
+	static int counter = 1;
+
+	fseek(fp, 0, SEEK_END);
+
+	fprintf(fp, "\n%d________________________________________________________________%d\n\n", 
+		counter, counter);
 	for (size_t i = 0; i < text->num_of_strings; i++)
 		fprintf(fp, "%s\n", text->strings[i].ptr);
-	printf("\n");
+	counter++;
+}
+
+FILE* OpenFileWrite ()
+{
+	char *file_name = "hamlet_sort.txt";
+
+	// printf("Enter name of output file: "); //TODO починить ввод файла с клавиатуры
+	// scanf("%s", file_name);
+
+	FILE *fp = fopen(file_name, "w");
+
+	return fp;
+}
+
+void CloseFile (FILE *fp)
+{
+	assert(fp != NULL);
+
+	fclose(fp);
 }
 
 void MakeString (struct Text *text)
@@ -158,7 +213,7 @@ size_t DeleteSpaces (char *array)
 			else
 				continue;
 		}
-		else if (array[i] != '\0')
+		else if (array[i] != '\0' && !isdigit(array[i]))
 		{
 			array[j++] = array[i];
 			is_newline = false;
@@ -179,14 +234,14 @@ int AlphabetOrderCMP(const void *arg1, const void *arg2)
 
 	while (!isalpha(*ptr1))
 	{
-		if(ptr1 <= str1->ptr + str1->len - 1)
+		if(ptr1 >= str1->ptr + str1->len - 1)
 			break;
 		ptr1++;
 	}
 
 	while (!isalpha(*ptr2))
 	{
-		if(ptr2 <= str2->ptr + str2->len - 1)
+		if(ptr2 >= str2->ptr + str2->len - 1)
 			break;
 		ptr2++;
 	}
@@ -207,12 +262,6 @@ int RhymeCMP (const void *arg1, const void *arg2)
 
 	char *ptr1 = str1->ptr + str1->len - 2;
 	char *ptr2 = str2->ptr + str2->len - 2;
-
-	// if (!isalpha(*ptr1))
-	// 	ptr1--;
-
-	// if (!isalpha(*ptr2))
-	// 	ptr2--;
 
 	while (!isalpha(*ptr1))
 	{
@@ -258,6 +307,13 @@ void OriginalSort (struct Text *text)
 	qsort(text->strings, text->num_of_strings, sizeof (struct String), 
 		OriginalCMP);
 }
+
+void MemoryFree (struct Text *text)
+{
+	free(text->buffer);
+	free(text->strings);
+}
+
 
 void TestPrint (struct Text *text)
 {
