@@ -6,48 +6,48 @@
 
 enum File_errors
 {
-	WRONG_INPUT_FILE,
+	WRONG_INPUT_FILE = 6,
 };
 
-struct String
+typedef struct String_t
 {
-	int len;
-	char *ptr;
-};
+	int len = 0;
+	char *ptr = nullptr;
+}String;
 
-struct Text
+typedef struct Text_t
 {
-	char *input_file_name;
-	size_t size_of_input_file;
-	char *buffer;
-	size_t num_of_strings;
-	struct String *strings;
-};
+	char *input_file_name = nullptr;
+	size_t size_of_input_file = 0;
+	char *buffer = nullptr;
+	size_t num_of_strings = 0;
+	String *strings = nullptr;
+} Text;
 
-int ReadFromFile (struct Text *text);
+int ReadFromFile (Text *text);
 
 size_t GetSizeOfFile (FILE* fp);
 
-void WriteToFile (struct Text *text, FILE *fp);
+void WriteToFile (Text *text, FILE *fp);
 
 FILE* OpenFileWrite ();
 
 void CloseFile (FILE *fp);
 
-void MakeString (struct Text *text);
+void MakeString (Text *text);
 
 size_t DeleteSpaces (char *array);
 
-void MemoryFree (struct Text *text);
+void MemoryFree (Text *text);
 
 int AlphabetOrderCMP (const void *arg1, const void *arg2);
 
-void AlphabetOrderSort(struct Text *text);
+void AlphabetOrderSort(Text *text);
 
 int RhymeCMP (const void *arg1, const void *arg2);
 
-void RhymeSort (struct Text *text);
+void RhymeSort (Text *text);
 
 int OriginalCMP (const void *arg1, const void *arg2);
 
-void OriginalSort (struct Text *text);
+void OriginalSort (Text *text);

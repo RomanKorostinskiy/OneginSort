@@ -2,8 +2,8 @@
 
 int AlphabetOrderCMP(const void *arg1, const void *arg2)
 {
-	struct String *str1 = (struct String *) arg1;
-	struct String *str2 = (struct String *) arg2;
+	String *str1 = (String *) arg1;
+	String *str2 = (String *) arg2;
 
 	char *ptr1 = str1->ptr;
 	char *ptr2 = str2->ptr;
@@ -25,16 +25,16 @@ int AlphabetOrderCMP(const void *arg1, const void *arg2)
 	return strcmp(ptr1, ptr2);
 }
 
-void AlphabetOrderSort(struct Text *text)
+void AlphabetOrderSort(Text *text)
 {
-	qsort(text->strings, text->num_of_strings, sizeof (struct String), 
+	qsort(text->strings, text->num_of_strings, sizeof (String), 
 		AlphabetOrderCMP);
 }
 
 int RhymeCMP (const void *arg1, const void *arg2)
 {
-	struct String *str1 = (struct String *) arg1;
-	struct String *str2 = (struct String *) arg2;
+	String *str1 = (String *) arg1;
+	String *str2 = (String *) arg2;
 
 	char *ptr1 = str1->ptr + str1->len - 2;
 	char *ptr2 = str2->ptr + str2->len - 2;
@@ -64,22 +64,22 @@ int RhymeCMP (const void *arg1, const void *arg2)
 	return *ptr1 - *ptr2;
 }
 
-void RhymeSort (struct Text *text)
+void RhymeSort (Text *text)
 {
-	qsort(text->strings, text->num_of_strings, sizeof (struct String), 
+	qsort(text->strings, text->num_of_strings, sizeof (String), 
 		RhymeCMP);
 }
 
 int OriginalCMP (const void *arg1, const void *arg2)
 {
-	struct String *str1 = (struct String *) arg1;
-	struct String *str2 = (struct String *) arg2;
+	String *str1 = (String *) arg1;
+	String *str2 = (String *) arg2;
 
 	return str1->ptr - str2->ptr;
 }
 
-void OriginalSort (struct Text *text)
+void OriginalSort (Text *text)
 {
-	qsort(text->strings, text->num_of_strings, sizeof (struct String), 
+	qsort(text->strings, text->num_of_strings, sizeof (String), 
 		OriginalCMP);
 }

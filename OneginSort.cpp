@@ -6,7 +6,7 @@ void Goodbye ();
 
 int main()
 {
-	struct Text input_text {};
+	Text input_text {};
 
 	Greetings ();
 

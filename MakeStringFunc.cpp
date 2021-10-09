@@ -1,6 +1,6 @@
 #include "OneginSort.h"
 
-int ReadFromFile (struct Text *text)
+int ReadFromFile (Text *text)
 {
 	text->input_file_name = (char*) calloc(20, sizeof(char));
 	printf("Enter name of input file: "); //TODO починить ввод файла с клавиатуры
@@ -49,7 +49,7 @@ size_t GetSizeOfFile (FILE* fp)
 	return size_of_file + 1;
 }
 
-void WriteToFile (struct Text *text, FILE *fp)
+void WriteToFile (Text *text, FILE *fp)
 {
 	assert(fp != NULL);
 
@@ -71,12 +71,12 @@ void CloseFile (FILE *fp)
 	fclose(fp);
 }
 
-void MakeString (struct Text *text)
+void MakeString (Text *text)
 {
 	text->num_of_strings = DeleteSpaces(text->buffer);
 
-	text->strings = (struct String*) calloc(text->num_of_strings, 
-		sizeof(struct String));
+	text->strings = (String*) calloc(text->num_of_strings, 
+		sizeof(String));
 
 	char *string_ptr = text->buffer;
 	char *newline_pos = NULL;
@@ -142,7 +142,7 @@ size_t DeleteSpaces (char *array)
 	return num_of_strings + 1;
 }
 
-void MemoryFree (struct Text *text)
+void MemoryFree (Text *text)
 {
 	free(text->buffer);
 	free(text->strings);
