@@ -1,4 +1,3 @@
-
 A Gentleman, courtier.
 A Norwegian Captain.
 A Priest.
@@ -2490,12 +2489,12 @@ Perpend.
 Pinch wanton on your cheek; call you his mouse;
 Plautus too light. For the law of writ and the liberty, these are
 Play something like the murther of my father
-. Play. 'Anon he finds him,
-. Play. 'But who, O who, had seen the mobled queen-'
-. Play. 'Run barefoot up and down, threat'ning the flames
-. Play. Ay, my lord.
-. Play. Ay, my lord.
-. Play. What speech, my good lord?
+1. Play. 'Anon he finds him,
+1. Play. 'But who, O who, had seen the mobled queen-'
+1. Play. 'Run barefoot up and down, threat'ning the flames
+1. Play. Ay, my lord.
+1. Play. Ay, my lord.
+1. Play. What speech, my good lord?
 Player. I hope we have reform'd that indifferently with us, sir.
 Player. I warrant your honour.
 Players.
@@ -4162,7 +4161,6 @@ your name be Horatio, as I am let to know it is.
 your table!
 your whoreson dead body. Here's a skull now. This skull hath lien
 yourself and him, he shall not exceed you three hits; he hath
-
 THE END
 Ham. Sir, his definement suffers no perdition in you; though, I 
 pocky corses now-a-days that will scarce hold the laying in, I
@@ -4629,7 +4627,7 @@ Enter a Lord.
 Guil. My honour'd lord!
 Laer. My dread lord,
 Mar. My good lord!
-. Play. What speech, my good lord?
+1. Play. What speech, my good lord?
 Hor. [aside to Hamlet] No, my good lord.
 Rey. But, my good lord-
 Osr. Ay, my good lord.
@@ -4719,8 +4717,8 @@ Pol. I hear him coming. Let's withdraw, my lord.
 Oph. Ay, my lord.
 Oph. Ay, my lord.
 Hor. Ay, my lord.
-. Play. Ay, my lord.
-. Play. Ay, my lord.
+1. Play. Ay, my lord.
+1. Play. Ay, my lord.
 Rey. Ay, my lord,
 Guil. What should we say, my lord?
 Oph. I shall obey, my lord.
@@ -6118,7 +6116,7 @@ That is not passion's slave, and I will wear him
 To our most valiant brother. So much for him.
 Speak loudly for him.
 Rey. My lord, that would dishonour him.
-. Play. 'Anon he finds him,
+1. Play. 'Anon he finds him,
 at his post; then] Bernardo, [who approaches him].
 Let his queen mother all alone entreat him 
 King. Well, we shall sift him.
@@ -6208,7 +6206,7 @@ Ham. How does the Queen?
 Enter Queen.
 [Exit Queen.]
 Ham. 'The mobled queen'?
-. Play. 'But who, O who, had seen the mobled queen-'
+1. Play. 'But who, O who, had seen the mobled queen-'
 Therefore our sometime sister, now our queen,
 The will of my most seeming-virtuous queen.
 How now, sweet queen?
@@ -7029,7 +7027,7 @@ Virtue itself scopes not calumnious strokes.
 Did coldly furnish forth the marriage tables.
 Or to take arms against a sea of troubles,
 Of crowflowers, nettles, daisies, and long purples,
-. Play. 'Run barefoot up and down, threat'ning the flames
+1. Play. 'Run barefoot up and down, threat'ning the flames
 When I to sulph'rous and tormenting flames
 Having ever seen in the prenominate crimes
 For in the fatness of these pursy times
@@ -9886,7 +9884,7 @@ uncurrent gold, be not crack'd within the ring.- Masters, you are
 all welcome. We'll e'en to't like French falconers, fly at
 anything we see. We'll have a speech straight. Come, give us a
 taste of your quality. Come, a passionate speech.
-. Play. What speech, my good lord?
+1. Play. What speech, my good lord?
 Ham. I heard thee speak me a speech once, but it was never acted;
 or if it was, not above once; for the play, I remember, pleas'd 
 not the million, 'twas caviary to the general; but it was (as I
@@ -9918,7 +9916,7 @@ Old grandsire Priam seeks.'
 So, proceed you.
 Pol. Fore God, my lord, well spoken, with good accent and good
 discretion.
-. Play. 'Anon he finds him,
+1. Play. 'Anon he finds him,
 Striking too short at Greeks. His antique sword,
 Rebellious to his arm, lies where it falls,
 Repugnant to command. Unequal match'd,
@@ -9952,10 +9950,10 @@ Pol. This is too long.
 Ham. It shall to the barber's, with your beard.- Prithee say on.
 He's for a jig or a tale of bawdry, or he sleeps. Say on; come to
 Hecuba.
-. Play. 'But who, O who, had seen the mobled queen-'
+1. Play. 'But who, O who, had seen the mobled queen-'
 Ham. 'The mobled queen'?
 Pol. That's good! 'Mobled queen' is good.
-. Play. 'Run barefoot up and down, threat'ning the flames
+1. Play. 'Run barefoot up and down, threat'ning the flames
 With bisson rheum; a clout upon that head
 Where late the diadem stood, and for a robe,
 About her lank and all o'erteemed loins,
@@ -9986,11 +9984,11 @@ Ham. Follow him, friends. We'll hear a play to-morrow.
 Exeunt Polonius and Players [except the First].
 Dost thou hear me, old friend? Can you play 'The Murther of
 Gonzago'?
-. Play. Ay, my lord.
+1. Play. Ay, my lord.
 Ham. We'll ha't to-morrow night. You could, for a need, study a
 speech of some dozen or sixteen lines which I would set down and
 insert in't, could you not?
-. Play. Ay, my lord.
+1. Play. Ay, my lord.
 Ham. Very well. Follow that lord- and look you mock him not.
 [Exit First Player.]
 My good friends, I'll leave you till night. You are welcome to
@@ -12489,4 +12487,3 @@ Go, bid the soldiers shoot.
 Exeunt marching; after the which a peal of ordnance
 are shot off. 
 THE END
-

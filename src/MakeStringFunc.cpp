@@ -21,7 +21,10 @@ int ReadFromFile (Text *text)
 	fp = fopen(text->input_file_name, "r");
 
 	if (fp == nullptr)
-		return WRONG_INPUT_FILE;
+    {
+        printf("Wrong input file");
+        return WRONG_INPUT_FILE;
+    }
 
 	size_t size_of_file = GetSizeOfFile(fp);
 
@@ -83,14 +86,9 @@ void MakeString (Text *text)
 	char *newline_pos = nullptr;
 	int string_ctr = 0;
 
-	while ((newline_pos = strchr (string_ptr, '\n')) || 
+	while ((newline_pos = strchr (string_ptr, '\n')) ||
 		(newline_pos = strchr (string_ptr, EOF)))
 	{
-		if((long unsigned int)string_ctr >= text->num_of_strings) 
-		{
-			*newline_pos = '\0';
-			break;
-		}
 		*newline_pos = '\0';
 
 		text->strings[string_ctr].ptr = string_ptr;
@@ -99,6 +97,12 @@ void MakeString (Text *text)
 		string_ptr = newline_pos + 1;
 
 		string_ctr++;
+
+        if((long unsigned int)string_ctr >= text->num_of_strings)
+        {
+            *newline_pos = '\0';
+            break;
+        }
 	}
 }
 
@@ -112,7 +116,7 @@ size_t DeleteSpaces (char *array)
 	{
 		if (array[i] == '\n')
 		{
-			if(!is_newline && array[i + 1] != '\0')
+			if(!is_newline && array[i + 1] != '\n' && array[i + 1] != EOF)
 			{
 				array[j++] = array[i];
 				is_newline = true;
@@ -121,7 +125,6 @@ size_t DeleteSpaces (char *array)
 			else
 				continue;
 		}
-
 		else if (isspace(array[i]))
 		{
 			if (!is_space && !is_newline)
@@ -132,7 +135,7 @@ size_t DeleteSpaces (char *array)
 			else
 				continue;
 		}
-		else if (array[i] != '\0' && !isdigit(array[i]))
+		else
 		{
 			array[j++] = array[i];
 			is_newline = false;
