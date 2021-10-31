@@ -1,4 +1,4 @@
-#include "OneginSort.h"
+#include "../include/OneginSort.h"
 
 int GetFileNames (Text *text, int argc, char* argv[])
 {

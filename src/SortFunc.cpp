@@ -1,4 +1,4 @@
-#include "OneginSort.h"
+#include "../include/OneginSort.h"
 
 int AlphabetOrderCMP(const void *arg1, const void *arg2)
 {

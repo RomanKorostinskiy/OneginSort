@@ -6,7 +6,7 @@
 
 enum File_errors
 {
-	WRONG_INPUT_FILE = 6,
+	WRONG_INPUT_FILE = 1,
 };
 
 typedef struct String_t
