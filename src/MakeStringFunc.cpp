@@ -40,7 +40,6 @@ int ReadFromFile (Text *text)
 
 FILE* OpenFileWrite (Text* text)
 {
-
 	FILE *fp = fopen(text->output_file_name, "w");
 
 	if (!fp)

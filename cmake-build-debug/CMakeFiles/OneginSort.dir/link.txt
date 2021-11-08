@@ -1,1 +1,0 @@
-/usr/bin/c++ -g CMakeFiles/OneginSort.dir/src/MakeStringFunc.cpp.o CMakeFiles/OneginSort.dir/src/OneginSort.cpp.o CMakeFiles/OneginSort.dir/src/SortFunc.cpp.o -o OneginSort 
